@@ -1,22 +1,22 @@
-import { envs } from "./config/envs";
-import { Server } from "./presentation/Server";
+import { envs } from './config/envs';
+import { AppRoutes } from './presentation/routes';
+import { Server } from './presentation/server';
 
 
-// llamamos al server.app desde una fn anonima autoinvocada
-(async() => {
-    main();
+
+
+(async()=> {
+  main();
 })();
 
 
 function main() {
-    
-    console.log('main... llama al server');
 
-    const server= new Server({
-        port: envs.PORT,
-        public_path: envs.PUBLIC_PATH,
-    });
+  const server = new Server({
+    port: envs.PORT,
+    public_path: envs.PUBLIC_PATH,
+    routes: AppRoutes.routes,
+  });
 
-    server.start();
-
+  server.start();
 }
